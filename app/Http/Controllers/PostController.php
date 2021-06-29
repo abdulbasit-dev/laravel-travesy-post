@@ -17,8 +17,8 @@ class PostController extends Controller
 
   public function create()
   {
-    return view('pages.create');
-    //
+    $posts = Post::with('user')->paginate(20);
+    return view('posts.create', compact('posts'));
   }
 
 
@@ -30,7 +30,7 @@ class PostController extends Controller
 
   public function show(Post $post)
   {
-    //
+    return view('posts.show', compact('post'));
   }
 
 

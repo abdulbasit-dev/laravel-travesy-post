@@ -8,7 +8,7 @@
   <div class="row mt-4">
     <div class="col-md-10 col-lg-8">
       <div class="post-preview ">
-        <a href="#" class="" style="text-decoration: none">
+        <a href="{{ route('posts.show',$post) }}" style="text-decoration: none">
           <h2 class="post-title text-primary">{{ $post->title }}</h2>
           <h4 class="post-subtitle text-dark">Problems look mighty small from 150 miles up</h4>
         </a>
