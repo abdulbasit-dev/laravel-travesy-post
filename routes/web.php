@@ -19,3 +19,7 @@ Route::name('pages.')->group(function () {
 });
 
 Route::resource('posts', 'PostController');
+
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

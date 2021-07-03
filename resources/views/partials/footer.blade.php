@@ -1,4 +1,4 @@
-<footer class="page-footer dark">
+<footer class="page-footer dark" style="margin-top: auto;">
   <div class="container">
     <div class="row">
       <div class="col-sm-3">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -10,21 +11,21 @@ class PostController extends Controller
 
   public function index()
   {
-    $posts = Post::with('user')->paginate(20);
+    $posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(20);
     return view('posts.index', compact('posts'));
   }
 
 
   public function create()
   {
-    $posts = Post::with('user')->paginate(20);
     return view('posts.create', compact('posts'));
   }
 
 
-  public function store(Request $request)
+  public function store(StorePostRequest $request)
   {
-    //
+    auth()->user()->posts()->create($request->validated());
+    return redirect()->route('posts.index')->with(['type' => 'success', 'message' => 'Post Created Succsfully']);
   }
 
 
