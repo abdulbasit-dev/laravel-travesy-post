@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\File;
 class PostController extends Controller
 {
 
+  function __construct()
+  {
+    $this->middleware('auth')->except('index', 'show');
+  }
+
   public function index()
   {
     $posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(10);
