@@ -24,6 +24,7 @@
               <a class="badge bg-secondary text-decoration-none text-white" href="#!">Freebies</a>
             </div>
             <div>
+              @if(Auth::check() && auth()->user()->id===$post->user_id)
               <!-- Post Action-->
               <a href="{{ route('posts.edit',$post) }}">
                 <button class="btn btn-primary rounded ml-3 btn-sm">
@@ -39,6 +40,7 @@
                 @csrf
                 @method('DELETE')
               </form>
+              @endif
             </div>
         </header>
         <!-- Preview image figure-->

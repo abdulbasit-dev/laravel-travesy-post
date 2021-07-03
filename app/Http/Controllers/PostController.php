@@ -58,11 +58,13 @@ class PostController extends Controller
 
   public function edit(Post $post)
   {
+    $this->authorize('update', $post);
     return view('posts.edit', compact('post'));
   }
 
   public function update(Request $request, Post $post)
   {
+    $this->authorize('update', $post);
     $file_name = '';
     if ($request->hasFile('cover')) {
       $getFileNameWithExt = $request->file('cover')->getClientOriginalName();
@@ -81,6 +83,7 @@ class PostController extends Controller
 
   public function destroy(Post $post)
   {
+    $this->authorize('update', $post);
     $post->delete();
     $destinationPath = 'uploads/post_cover';
     File::delete($destinationPath . "/$post->cover");
