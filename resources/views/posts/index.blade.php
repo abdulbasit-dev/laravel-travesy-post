@@ -1,31 +1,95 @@
 @extends('layouts.app')
 @section('title','Posts')
 @section('content')
-<div class="container mt-5">
+
+
+<!-- Page content-->
+<div class="container">
   @if (count($posts))
   <h1>Total Post {{ count(\App\Post::all()) }}</h1>
-  @foreach ($posts as $post)
-  <div class="row mt-4">
-    <div class="col-md-10 col-lg-8">
-      <div class="post-preview ">
-        <a href="{{ route('posts.show',$post) }}" style="text-decoration: none">
-          <h2 class="post-title text-primary">{{ $post->title }}</h2>
-          <h4 class="post-subtitle text-dark">Problems look mighty small from 150 miles up</h4>
-        </a>
-        <p class="post-meta">Posted by <a href="#">{{ $post->user->name }} on September 24,
-            2018</a></p>
+  <div class="row">
+    <!-- Blog entries-->
+    <div class="col-lg-8">
+      <!-- Featured blog post-->
+      <div class="card mb-4">
+        <a href="#!"><img class="card-img-top"
+            src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+        <div class="card-body">
+          <div class="small text-muted">January 1, 2021</div>
+          <h2 class="card-title">Featured Post Title</h2>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita
+            corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+          <a class="btn btn-primary" href="#!">Read more →</a>
+        </div>
       </div>
-      <hr />
+      <!-- Nested row for non-featured blog posts-->
+      <div class="row">
+        @foreach ($posts as $post)
+        <div class="col-lg-6">
+          <!-- Blog post-->
+          <div class="card mb-4">
+            <a href="#!"><img class="card-img-top" style="width:348px;height:198px"
+                src="{{ asset('uploads/post_cover/'.$post->cover) }}" alt="..." /></a>
+            <div class="card-body">
+              <div class="small text-muted">{{ $post->created_at->format('F d, Y ') }}</div>
+              <h2 class="card-title h4">{{ $post->title }}</h2>
+              {{-- <p class="card-text d-flex">{!! $post->truncate($post) !!}</p> --}}
+              <a class="btn btn-primary" href="{{ route('posts.show', $post) }}">Read more →</a>
+            </div>
+          </div>
+        </div>
+        @endforeach
+        {{ $posts->links() }}
+      </div>
     </div>
 
+
+    <!-- Side widgets-->
+    <div class="col-lg-4">
+      <!-- Search widget-->
+      <div class="card mb-4">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+          <div class="input-group">
+            <input class="form-control" type="text" placeholder="Enter search term..."
+              aria-label="Enter search term..." aria-describedby="button-search" />
+            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+          </div>
+        </div>
+      </div>
+      <!-- Categories widget-->
+      <div class="card mb-4">
+        <div class="card-header">Categories</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">Web Design</a></li>
+                <li><a href="#!">HTML</a></li>
+                <li><a href="#!">Freebies</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">JavaScript</a></li>
+                <li><a href="#!">CSS</a></li>
+                <li><a href="#!">Tutorials</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Side widget-->
+      <div class="card mb-4">
+        <div class="card-header">Side Widget</div>
+        <div class="card-body">You can put anything you want inside of these side widgets. They
+          are easy to use, and feature the Bootstrap 5 card component!</div>
+      </div>
+    </div>
   </div>
-  @endforeach
-  {{ $posts->links() }}
   @else
   <h1>No Post Found</h1>
   @endif
-
 </div>
-
-
 @endsection

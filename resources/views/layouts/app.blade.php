@@ -20,6 +20,9 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
   <link rel="stylesheet" href="{{ asset('assets/js/smoothproducts.min.js') }}">
 
+  {{-- Dropzone.js --}}
+  <link rel="stylesheet" href="{{ asset('assets/dropzone/dist/min/dropzone.min.css') }}">
+
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -53,7 +56,6 @@
   <script>
     CKEDITOR.replace( 'body' );
   </script>
-
 
 
 </body>

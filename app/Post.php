@@ -15,4 +15,9 @@ class Post extends Model
   {
     return $this->belongsTo('App\User');
   }
+
+  public function truncate($post)
+  {
+    return substr($post->body, 0, 80) . ' ...';
+  }
 }
